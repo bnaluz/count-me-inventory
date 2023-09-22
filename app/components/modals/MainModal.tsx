@@ -1,0 +1,103 @@
+'use client';
+import { useCallback, useEffect, useState } from 'react';
+import { IoMdClose } from 'react-icons/io';
+
+interface MainModalProps {
+  isOpen?: boolean;
+  onClose: () => void; //??
+  onSubmit: () => void; //?? remove these
+  title?: string;
+  body?: React.ReactElement;
+  footer?: React.ReactElement;
+  actionLabel: string; //remove the ?
+  disabled?: boolean;
+  secondaryAction?: () => void;
+  secondaryActionLabel?: string;
+}
+
+const MainModal: React.FC<MainModalProps> = ({
+  isOpen,
+  onClose,
+  onSubmit,
+  title,
+  body,
+  footer,
+  actionLabel,
+  disabled,
+  secondaryAction,
+  secondaryActionLabel,
+}) => {
+  //showState
+  const [showModal, setShowModal] = useState(isOpen);
+
+  useEffect(() => {
+    setShowModal(isOpen);
+  }, [isOpen]);
+
+  //event handlers start***
+  const handleClose = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+    setShowModal(false);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  }, [disabled, onClose]);
+
+  const handleSubmit = useCallback(() => {
+    if (disabled) {
+      return;
+    }
+  }, [disabled]);
+
+  const handleSecondAction = useCallback(() => {
+    if (disabled || !secondaryAction) {
+      return;
+    }
+    secondaryAction();
+  }, [disabled, secondaryAction]);
+  //event handlers end***
+
+  return (
+    <>
+      <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none bg-slate-300">
+        <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
+          {/* //Contents */}
+          <div
+            className={`translate duration-300 h-full ${
+              showModal ? 'translate-y-0' : 'tranlate-y-full'
+            } ${showModal ? 'opacity-100' : 'opacity-0'} `}
+          >
+            <div className="translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              {/* {//HeaderStart***} */}
+              <div className="flex items-center p-6 rounded-t justify-center relative border-b-[1px]">
+                <button
+                  onClick={handleClose}
+                  className="p-1 border-0 hover:opacity-70 transition absolute left-9"
+                >
+                  <IoMdClose size={18} />
+                </button>
+                <div className="text-lg font-semibold">{title}</div>
+              </div>
+              {/* //Body*** */}
+              <div className="relative p-6 flex-auto">{body}</div>
+              {/* //Footer*** */}
+              <div className="flex flex-col gap-2 p-6">
+                <div className="flex flex-row items-center gap-4 w-full">
+                  {secondaryAction && secondaryActionLabel && <button></button>}
+                  <button disabled={disabled} onClick={handleSubmit}>
+                    {actionLabel}
+                  </button>
+                </div>
+                {footer}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default MainModal;
