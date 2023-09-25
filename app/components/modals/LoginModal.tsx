@@ -2,4 +2,4 @@
 
 const LoginModal = () => {};
 
-export default LoginModal;
+export default LoginModal
