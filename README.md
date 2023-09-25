@@ -2,7 +2,7 @@ Documentation
 
 Project Purpose: Inventory manager to be used to track individual parts, allowing users to manage inventory levels and costs of goods on hand. Additionally, users are able to build kits which are composed of different quantities of individual parts. Once a kit is created, users are then able to 'build' the kit and all of the required inventory parts will be removed from inventory, updating cost of goods on hand amount.
 
-Technologies: Next.js, React, Typescript, TailwindCSS,
+Technologies: Next.js, React, Typescript, TailwindCSS, Zustand
 
 License: MIT - Copyright 2023 Bobby Naluz
 

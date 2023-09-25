@@ -4,12 +4,12 @@ import { IoMdClose } from 'react-icons/io';
 
 interface MainModalProps {
   isOpen?: boolean;
-  onClose: () => void; //??
-  onSubmit: () => void; //?? remove these
+  onClose: () => void;
+  onSubmit: () => void;
   title?: string;
   body?: React.ReactElement;
   footer?: React.ReactElement;
-  actionLabel: string; //remove the ?
+  actionLabel: string;
   disabled?: boolean;
   secondaryAction?: () => void;
   secondaryActionLabel?: string;
@@ -49,7 +49,8 @@ const MainModal: React.FC<MainModalProps> = ({
     if (disabled) {
       return;
     }
-  }, [disabled]);
+    onSubmit();
+  }, [disabled, onSubmit]);
 
   const handleSecondAction = useCallback(() => {
     if (disabled || !secondaryAction) {
@@ -85,7 +86,11 @@ const MainModal: React.FC<MainModalProps> = ({
               {/* //Footer*** */}
               <div className="flex flex-col gap-2 p-6">
                 <div className="flex flex-row items-center gap-4 w-full">
-                  {secondaryAction && secondaryActionLabel && <button></button>}
+                  {secondaryAction && secondaryActionLabel && (
+                    <button onClick={handleSecondAction}>
+                      Secondary Action
+                    </button>
+                  )}
                   <button disabled={disabled} onClick={handleSubmit}>
                     {actionLabel}
                   </button>
