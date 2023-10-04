@@ -23,7 +23,6 @@ export default function RootLayout({
         <ToasterProvider />
         <LoginModal />
         <Navbar />
-
         {children}
       </body>
     </html>

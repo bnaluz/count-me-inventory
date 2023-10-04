@@ -27,6 +27,8 @@ const LoginModal = () => {
     loginModal.onClose();
     registerModal.onClose();
   }, [loginModal, registerModal]);
+
+  return <div></div>;
 };
 
 export default LoginModal;
