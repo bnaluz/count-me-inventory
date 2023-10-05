@@ -2,6 +2,7 @@
 
 import Container from '../Container';
 import Logo from './Logo';
+import UserMenu from './UserMenu';
 
 const Navbar = () => {
   return (
@@ -10,9 +11,7 @@ const Navbar = () => {
         <Container>
           <div className="flex flex-row items-center justify-between gap-3 md-gap-0">
             <Logo />
-            <div className="text-black">Another one</div>
-            <div className="text-black">What else can i put here </div>
-            <div className="text-black"> testing test</div>
+            <UserMenu />
           </div>
         </Container>
       </div>
