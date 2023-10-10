@@ -11,9 +11,10 @@ datasource db {
 }
 
 model User {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  email          String?  @unique
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  email          String?   @unique
+  emailVerified  DateTime?
   name           String?
   hashedPassword String?
 

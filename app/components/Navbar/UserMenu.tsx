@@ -1,5 +1,6 @@
 'use client';
 import { SafeUser } from '@/app/types';
+import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
@@ -38,12 +39,15 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={() => {}} label="Hello, UserName"></MenuItem>
+                <MenuItem
+                  onClick={() => {}}
+                  label={`Hello ${currentUser.name}`}
+                ></MenuItem>
                 <MenuItem onClick={() => {}} label="Inventory"></MenuItem>
                 <MenuItem onClick={() => {}} label="Projects"></MenuItem>
                 <MenuItem onClick={() => {}} label="Vendors"></MenuItem>
                 <MenuItem onClick={() => {}} label="Purchase Orders"></MenuItem>
-                <MenuItem onClick={() => {}} label="Logout"></MenuItem>
+                <MenuItem onClick={() => signOut()} label="Logout"></MenuItem>
               </>
             ) : (
               <>
