@@ -9,7 +9,7 @@ import { signIn } from 'next-auth/react';
 import useRegisterModal from '../hooks/useRegisterModal';
 import useLoginModal from '../hooks/useLoginModal';
 import MainModal from './MainModal';
-import Input from '../Input';
+import Input from '../inputs/Input';
 import Heading from '../Heading';
 
 const RegisterModal = () => {

@@ -9,7 +9,7 @@ import useRegisterModal from '../hooks/useRegisterModal';
 import useLoginModal from '../hooks/useLoginModal';
 import toast from 'react-hot-toast';
 import Heading from '../Heading';
-import Input from '../Input';
+import Input from '../inputs/Input';
 import MainModal from './MainModal';
 
 const LoginModal = () => {

@@ -1,8 +1,12 @@
+import Container from './components/Container';
+import InventoryItem from './components/InventoryItem';
+
 export default function Home() {
   return (
-    <div className="pt-24">
-      hello
-      <div className="pt-2">hello2</div>
-    </div>
+    <Container>
+      <div className="pt-32">
+        <InventoryItem />
+      </div>
+    </Container>
   );
 }
