@@ -4,6 +4,9 @@ import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
+
+//components
+import useAddInventoryModal from '../hooks/useAddInventoryModal';
 import useLoginModal from '../hooks/useLoginModal';
 import useRegisterModal from '../hooks/useRegisterModal';
 import MenuItem from './MenuItem';
@@ -17,6 +20,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const addInventoryModal = useAddInventoryModal();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
@@ -43,7 +47,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   onClick={() => {}}
                   label={`Hello ${currentUser.name}`}
                 ></MenuItem>
-                <MenuItem onClick={() => {}} label="Inventory"></MenuItem>
+                <MenuItem
+                  onClick={() => addInventoryModal.onOpen()}
+                  label="Add Inventory Item"
+                ></MenuItem>
                 <MenuItem onClick={() => {}} label="Projects"></MenuItem>
                 <MenuItem onClick={() => {}} label="Vendors"></MenuItem>
                 <MenuItem onClick={() => {}} label="Purchase Orders"></MenuItem>

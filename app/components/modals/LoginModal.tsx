@@ -13,12 +13,15 @@ import Input from '../inputs/Input';
 import MainModal from './MainModal';
 
 const LoginModal = () => {
+  //pull stores in
   const registerModal = useRegisterModal();
-  const router = useRouter();
   const loginModal = useLoginModal();
+
+  const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
 
+  //react-hook-form
   const {
     register,
     handleSubmit,

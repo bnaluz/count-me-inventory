@@ -6,6 +6,7 @@ import ToasterProvider from './components/providers/ToasterProvider';
 import LoginModal from './components/modals/LoginModal';
 import RegisterModal from './components/modals/RegisterModal';
 import getCurrentUser from './actions/getCurrentUser';
+import AddInventoryModal from './components/modals/AddInventoryModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,6 +26,7 @@ export default async function RootLayout({
       <body className={inter.className}>
         <ToasterProvider />
         <LoginModal />
+        <AddInventoryModal />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
         {children}
