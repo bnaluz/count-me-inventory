@@ -1,12 +1,17 @@
 'use client';
+import { useState } from 'react';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
+//components
 import MainModal from './MainModal';
 import Input from '../inputs/Input';
 import useAddInventoryModal from '../hooks/useAddInventoryModal';
-import { useState } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Heading from '../Heading';
 
 const AddInventoryModal = () => {
+  const router = useRouter();
   //pull stores in
   const addInventoryModal = useAddInventoryModal();
 
@@ -17,6 +22,7 @@ const AddInventoryModal = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -30,9 +36,24 @@ const AddInventoryModal = () => {
     },
   });
 
-  //come back to this later
+  //sending form data off to API
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
+    console.log(data);
+    axios
+      .post('/api/inventory', data)
+      .then(() => {
+        toast.success('Inventory updated!');
+        router.refresh();
+        reset();
+        addInventoryModal.onClose();
+      })
+      .catch(() => {
+        toast.error('Something went wrong');
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const bodyContent = (
@@ -60,6 +81,7 @@ const AddInventoryModal = () => {
       <Input
         id="productPrice"
         label="Product Price"
+        formatPrice
         disabled={isLoading}
         register={register}
         errors={errors}
