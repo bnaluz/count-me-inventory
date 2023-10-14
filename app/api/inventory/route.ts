@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import prisma from '@/app/libs/prismadb';
 import getCurrentUser from '@/app/actions/getCurrentUser';
 
+//need to get added inventory items for inventory component (need to create)
+
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
 
