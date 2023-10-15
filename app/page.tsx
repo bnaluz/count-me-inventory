@@ -1,5 +1,5 @@
 import Container from './components/Container';
-import InventoryItem from './components/InventoryItem';
+import InventoryItem from './components/inventory/InventoryItem';
 
 export default function Home() {
   return (

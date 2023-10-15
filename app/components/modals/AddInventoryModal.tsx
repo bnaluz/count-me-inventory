@@ -122,15 +122,15 @@ const AddInventoryModal = () => {
     </div>
   );
 
-  const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
-      <div className="text-neutral-500 text-center mt-4 font-light">
-        <div className="justify-center flex flex-row items-center gap-2">
-          <div>Create</div>
-        </div>
-      </div>
-    </div>
-  );
+  // const footerContent = (
+  //   <div className="flex flex-col gap-4 mt-3">
+  //     <div className="text-neutral-500 text-center mt-4 font-light">
+  //       <div className="justify-center flex flex-row items-center gap-2">
+  //         <div>Create</div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <MainModal
@@ -141,7 +141,7 @@ const AddInventoryModal = () => {
       onClose={addInventoryModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
-      footer={footerContent}
+      // footer={footerContent}
     />
   );
 };
