@@ -50,7 +50,7 @@ const LoginModal = () => {
 
   const toggle = useCallback(() => {
     loginModal.onClose();
-    registerModal.onClose();
+    registerModal.onOpen();
   }, [loginModal, registerModal]);
 
   //need to create input component

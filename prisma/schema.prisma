@@ -11,25 +11,27 @@ datasource db {
 }
 
 model User {
-  id             Int       @id @default(autoincrement())
+  id             String    @id @default(uuid())
   createdAt      DateTime  @default(now())
   email          String?   @unique
   emailVerified  DateTime?
   name           String?
   hashedPassword String?
 
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime  @updatedAt
+  products  Product[]
 }
 
 model Location {
-  id              Int     @id @default(autoincrement())
+  id              String  @id @default(uuid())
   locationName    String?
   locationAddress String?
   userId          Int?
 }
 
 model Product {
-  id                 Int     @id @default(autoincrement())
+  id                 String  @id @default(uuid())
+  userId             String
   productBrand       String?
   productName        String
   productDescription String?
@@ -37,10 +39,12 @@ model Product {
   productCategory    String?
   location           String?
   totalQty           Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Vendor {
-  id            Int     @id @default(autoincrement())
+  id            String  @id @default(uuid())
   vendorName    String
   vendorAddress String?
 }

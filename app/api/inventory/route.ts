@@ -32,6 +32,7 @@ export async function POST(request: Request) {
       productCategory,
       location,
       totalQty: parseInt(totalQty),
+      userId: currentUser.id,
     },
   });
 
