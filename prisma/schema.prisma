@@ -35,7 +35,7 @@ model Product {
   productBrand       String?
   productName        String
   productDescription String?
-  productPrice       Int
+  productPrice       Float   @db.DoublePrecision
   productCategory    String?
   location           String?
   totalQty           Int

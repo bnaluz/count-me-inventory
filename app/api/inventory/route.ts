@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     data: {
       productName,
       productDescription,
-      productPrice: parseInt(productPrice),
+      productPrice: Number(productPrice),
       productBrand,
       productCategory,
       location,
