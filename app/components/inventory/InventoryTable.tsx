@@ -20,10 +20,10 @@ const InventoryTable = () => {
             </th>
             <th scope="col" className="px-6 py-3">
               Product Category
-            </th>{' '}
+            </th>
             <th scope="col" className="px-6 py-3">
               Product Location
-            </th>{' '}
+            </th>
             <th scope="col" className="px-6 py-3">
               Total Qty
             </th>
@@ -35,14 +35,14 @@ const InventoryTable = () => {
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             >
-              Apple MacBook Pro 17"
+              Brand
             </th>
-            <td className="px-6 py-4">Silver</td>
-            <td className="px-6 py-4">Laptop</td>
-            <td className="px-6 py-4">$2999</td>
-            <td className="px-6 py-4">$2999</td>
-            <td className="px-6 py-4">$2999</td>
-            <td className="px-6 py-4">$2999</td>
+            <td className="px-6 py-4">Name</td>
+            <td className="px-6 py-4">Description</td>
+            <td className="px-6 py-4">Price</td>
+            <td className="px-6 py-4">Category</td>
+            <td className="px-6 py-4">Location</td>
+            <td className="px-6 py-4">Quantity</td>
           </tr>
         </tbody>
       </table>

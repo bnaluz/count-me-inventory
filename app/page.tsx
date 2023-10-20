@@ -1,12 +1,12 @@
+import ClientOnly from './components/ClientOnly';
 import Container from './components/Container';
-import InventoryDash from './components/inventory/InventoryDash';
 
 export default function Home() {
   return (
-    <Container>
-      <div className="pt-32">
-        <InventoryDash />
-      </div>
-    </Container>
+    <ClientOnly>
+      <Container>
+        <div className="pt-32"></div>
+      </Container>
+    </ClientOnly>
   );
 }
