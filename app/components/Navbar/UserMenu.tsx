@@ -24,6 +24,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
+  const signOutAndRefresh = () => {
+    router.push('/');
+    signOut();
+  };
+
   const toggleOpen = useCallback(() => {
     setIsOpen((value) => !value);
   }, []);
@@ -54,7 +59,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <MenuItem onClick={() => {}} label="Projects"></MenuItem>
                 <MenuItem onClick={() => {}} label="Vendors"></MenuItem>
                 <MenuItem onClick={() => {}} label="Purchase Orders"></MenuItem>
-                <MenuItem onClick={() => signOut()} label="Logout"></MenuItem>
+                <MenuItem
+                  onClick={() => signOutAndRefresh()}
+                  label="Logout"
+                ></MenuItem>
               </>
             ) : (
               <>
