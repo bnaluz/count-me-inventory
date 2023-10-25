@@ -31,7 +31,7 @@ const TableRow: React.FC<TableRowProps> = ({
       <td className="px-6 py-4">{productCategory}</td>
       <td className="px-6 py-4">{productBrand}</td>
       <td className="px-6 py-4">{productLocation}</td>
-      <td className="px-6 py-4">{productPrice.toString()}</td>
+      <td className="px-6 py-4">${productPrice.toString()}</td>
       <td className="px-6 py-4">{totalQty.toString()}</td>
     </tr>
   );
