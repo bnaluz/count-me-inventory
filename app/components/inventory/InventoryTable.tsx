@@ -2,6 +2,7 @@
 
 import TableHead from './TableHead';
 
+//working on pagination for inventory table
 const InventoryTable = ({ children }: any) => {
   return (
     <div className="relative overflow-x-auto">
