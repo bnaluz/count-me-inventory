@@ -22,7 +22,6 @@ export default async function RootLayout({
 }) {
   const currentUser = await getCurrentUser();
   const inventory = await getInventory();
-  console.log(inventory);
 
   let total = 0;
   for (let i = 0; i < inventory.length; i++) {

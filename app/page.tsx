@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import getInventory from './actions/getInventory';
 import ClientOnly from './components/ClientOnly';
 import Container from './components/Container';
@@ -28,6 +27,7 @@ export default async function Home({
           <InventoryTable>
             {entries.map((el) => (
               <TableRow
+                key={el.productName}
                 productBrand={el.productBrand?.toString()}
                 productName={el.productName}
                 productDescription={el.productDescription?.toString()}
@@ -37,12 +37,13 @@ export default async function Home({
                 totalQty={el.totalQty}
               />
             ))}
-            <PaginationControls
-              hasNextPage={end < inventory.length}
-              hasPrevPage={start > 0}
-              inventoryNumber={inventory.length}
-            />
           </InventoryTable>
+          <PaginationControls
+            key={'paginationControls'}
+            hasNextPage={end < inventory.length}
+            hasPrevPage={start > 0}
+            inventoryNumber={inventory.length}
+          />
         </div>
       </Container>
     </ClientOnly>

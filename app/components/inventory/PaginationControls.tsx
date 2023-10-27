@@ -19,10 +19,13 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
   const page = searchParams?.get('page') ?? '1';
   const per_page = searchParams?.get('per_page') ?? '10';
 
+  const totalPages = Math.ceil(inventoryNumber / Number(per_page));
+  console.log(totalPages);
+
   return (
-    <div className="flex gap-2">
+    <div className="flex items-center justify-between pt-4">
       <button
-        className="bg-blue-500 text-white p-1"
+        className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         disabled={!hasPrevPage}
         onClick={() =>
           router.push(`/?page=${Number(page) - 1}&per_page=${per_page}`)
@@ -36,7 +39,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
       </div>
 
       <button
-        className="bg-blue-500 text-white p-1"
+        className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         disabled={!hasNextPage}
         onClick={() =>
           router.push(`/?page=${Number(page) + 1}&per_page=${per_page}`)
