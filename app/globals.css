@@ -19,7 +19,7 @@
 
 @layer base {
   body {
-    @apply bg-[#B6D0E2]/30 text-[#1f2937] tracking-wide;
+    @apply bg-[#B6D0E2]/20 text-[#1f2937] tracking-wide;
   }
 }
 /* body {

@@ -2,7 +2,7 @@
 
 const TableHead = () => {
   return (
-    <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <thead className="text-xs text-black uppercase bg-gray-300 dark:bg-gray-300 dark:text-black ">
       <tr>
         <th scope="col" className="px-6 py-3">
           Product Name
