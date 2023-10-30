@@ -4,7 +4,7 @@ import TableHead from './TableHead';
 
 const InventoryTable = ({ children }: any) => {
   return (
-    <div className="relative overflow-x-auto">
+    <div className="relative overflow-x-auto rounded-md">
       <table className="w-full text-md text-left text-black dark:text-black ">
         <TableHead />
         <tbody>{children}</tbody>
