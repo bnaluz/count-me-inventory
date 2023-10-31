@@ -39,7 +39,7 @@ const AddInventoryModal = () => {
   //sending form data off to API
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
-    console.log(data);
+    // console.log(data);
     axios
       .post('/api/inventory', data)
       .then(() => {

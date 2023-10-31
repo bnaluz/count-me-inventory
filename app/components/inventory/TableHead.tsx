@@ -25,6 +25,9 @@ const TableHead = () => {
         <th scope="col" className="px-6 py-3">
           Total Qty
         </th>
+        <th scope="col" className="px-6 py-3">
+          Edit
+        </th>
       </tr>
     </thead>
   );
