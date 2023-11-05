@@ -38,12 +38,14 @@ const TableRow: React.FC<TableRowProps> = ({
       <td className="px-6 py-4">{productLocation}</td>
       <td className="px-6 py-4">${productPrice.toString()}</td>
       <td className="px-6 py-4">{totalQty.toString()}</td>
-      <button
-        onClick={AddInventory.onOpen}
-        className=" text-xs px-4 py-2 mx-2 my-2 rounded-lg"
-      >
-        <AiOutlineEdit size={16} />
-      </button>
+      <td>
+        <button
+          onClick={AddInventory.onOpen}
+          className=" text-xs px-4 py-2 mx-2 my-2 rounded-lg"
+        >
+          <AiOutlineEdit size={16} />
+        </button>
+      </td>
     </tr>
   );
 };

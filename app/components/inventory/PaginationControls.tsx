@@ -19,9 +19,6 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
   const page = searchParams?.get('page') ?? '1';
   const per_page = searchParams?.get('per_page') ?? '10';
 
-  const totalPages = Math.ceil(inventoryNumber / Number(per_page));
-  console.log(totalPages);
-
   return (
     <>
       <div className="flex items-center justify-between pt-4">
