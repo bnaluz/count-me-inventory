@@ -7,7 +7,7 @@ import LoginModal from './components/modals/LoginModal';
 import RegisterModal from './components/modals/RegisterModal';
 import getCurrentUser from './actions/getCurrentUser';
 import AddInventoryModal from './components/modals/AddInventoryModal';
-import getInventory from './actions/getInventory';
+import UpdateInventoryModal from './components/modals/UpdateInventoryModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,14 +21,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const currentUser = await getCurrentUser();
-  const inventory = await getInventory();
-
-  let total = 0;
-  for (let i = 0; i < inventory.length; i++) {
-    let eachTotal = inventory[i].productPrice * inventory[i].totalQty;
-    total += eachTotal;
-  }
-  console.log(total.toFixed(2));
 
   return (
     <html lang="en">
@@ -36,6 +28,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <LoginModal />
         <AddInventoryModal />
+        <UpdateInventoryModal />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
         {children}
@@ -43,3 +36,13 @@ export default async function RootLayout({
     </html>
   );
 }
+
+//might use something like this for dashboard later
+// const inventory = await getInventory();
+
+// let total = 0;
+// for (let i = 0; i < inventory.length; i++) {
+//   let eachTotal = inventory[i].productPrice * inventory[i].totalQty;
+//   total += eachTotal;
+// }
+// console.log(total.toFixed(2));

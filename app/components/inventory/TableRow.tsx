@@ -1,15 +1,16 @@
 'use client';
+import { useState } from 'react';
 import { AiOutlineEdit } from 'react-icons/ai';
-import useAddInventoryModal from '../hooks/useAddInventoryModal';
+import useUpdateInventoryModal from '../hooks/useUpdateInventoryModal';
 
 interface TableRowProps {
-  productBrand?: String;
-  productName?: String;
-  productDescription?: String;
-  productCategory?: String;
-  productPrice: Number;
-  productLocation?: String;
-  totalQty: Number;
+  productBrand?: string;
+  productName?: string;
+  productDescription?: string;
+  productCategory?: string;
+  productPrice: number;
+  productLocation?: string;
+  totalQty: number;
 }
 
 const TableRow: React.FC<TableRowProps> = ({
@@ -22,7 +23,19 @@ const TableRow: React.FC<TableRowProps> = ({
   totalQty,
 }) => {
   //using this, possibly creating a new updateInv modal
-  const AddInventory = useAddInventoryModal();
+  const updateInventory = useUpdateInventoryModal();
+
+  const handleOpenUpdateModal = () => {
+    updateInventory.onOpen({
+      productName,
+      productBrand,
+      productCategory,
+      productDescription,
+      productLocation,
+      productPrice,
+      totalQty,
+    });
+  };
 
   return (
     <tr className="border-b dark:bg-gray-200 dark:border-gray-700">
@@ -40,7 +53,7 @@ const TableRow: React.FC<TableRowProps> = ({
       <td className="px-6 py-4">{totalQty.toString()}</td>
       <td>
         <button
-          onClick={AddInventory.onOpen}
+          onClick={handleOpenUpdateModal}
           className=" text-xs px-4 py-2 mx-2 my-2 rounded-lg"
         >
           <AiOutlineEdit size={16} />

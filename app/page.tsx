@@ -27,7 +27,7 @@ export default async function Home({
           <InventoryTable>
             {entries.map((el) => (
               <TableRow
-                key={el.productName}
+                key={el.id}
                 productBrand={el.productBrand?.toString()}
                 productName={el.productName}
                 productDescription={el.productDescription?.toString()}

@@ -49,7 +49,7 @@ const AddInventoryModal = () => {
         addInventoryModal.onClose();
       })
       .catch(() => {
-        toast.error('Something went wrong');
+        toast.error('Failed to add inventory');
       })
       .finally(() => {
         setIsLoading(false);

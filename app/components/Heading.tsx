@@ -2,8 +2,8 @@
 import React from 'react';
 
 interface HeadingProps {
-  title: String;
-  subtitle: String;
+  title: string;
+  subtitle: string;
   center?: boolean;
 }
 

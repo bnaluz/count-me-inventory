@@ -33,7 +33,7 @@ model Product {
   id                 String  @id @default(uuid())
   userId             String
   productBrand       String?
-  productName        String
+  productName        String  @unique
   productDescription String?
   productPrice       Float   @db.DoublePrecision
   productCategory    String?
