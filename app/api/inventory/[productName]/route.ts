@@ -19,6 +19,7 @@ export async function POST(request: Request) {
     productCategory,
     location,
     totalQty,
+    productId,
   } = body;
 
   //ran into issue submitting update for productData due to type - created safeTypes below and update now works
@@ -29,7 +30,7 @@ export async function POST(request: Request) {
 
   const updatedItem = await prisma.product.update({
     where: {
-      productName: productName,
+      id: productId,
     },
     data: {
       productBrand,

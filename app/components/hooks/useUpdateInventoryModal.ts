@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 
 interface TableRowProps {
+  productId: string;
   productBrand?: string;
   productName?: string;
   productDescription?: string;

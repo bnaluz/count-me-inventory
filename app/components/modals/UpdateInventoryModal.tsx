@@ -24,7 +24,8 @@ const UpdateInventoryModal = () => {
   } = useForm<FieldValues>();
 
   useEffect(() => {
-    if (selectedItemData && selectedItemData.productName) {
+    if (selectedItemData && selectedItemData.productId) {
+      setValue('productId', selectedItemData.productId);
       setValue('productName', selectedItemData.productName);
       setValue('productDescription', selectedItemData.productDescription);
       setValue('productPrice', selectedItemData.productPrice);
@@ -38,7 +39,7 @@ const UpdateInventoryModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
     axios
-      .post(`/api/inventory/${selectedItemData.productName}`, data)
+      .post(`/api/inventory/${selectedItemData.productId}`, data)
       .then(() => {
         toast.success('Inventory Updated!');
         router.refresh();
@@ -112,6 +113,12 @@ const UpdateInventoryModal = () => {
         register={register}
         errors={errors}
         required
+      />
+      <input
+        type="hidden"
+        id="productId"
+        {...register('productId')}
+        value={selectedItemData.productId} // Set the value to productId
       />
     </div>
   );

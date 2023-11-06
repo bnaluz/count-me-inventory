@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+
 import { AiOutlineEdit } from 'react-icons/ai';
 import useUpdateInventoryModal from '../hooks/useUpdateInventoryModal';
 
@@ -11,6 +11,7 @@ interface TableRowProps {
   productPrice: number;
   productLocation?: string;
   totalQty: number;
+  productId: string;
 }
 
 const TableRow: React.FC<TableRowProps> = ({
@@ -21,12 +22,14 @@ const TableRow: React.FC<TableRowProps> = ({
   productName,
   productPrice,
   totalQty,
+  productId,
 }) => {
   //using this, possibly creating a new updateInv modal
   const updateInventory = useUpdateInventoryModal();
 
   const handleOpenUpdateModal = () => {
     updateInventory.onOpen({
+      productId,
       productName,
       productBrand,
       productCategory,
@@ -38,7 +41,10 @@ const TableRow: React.FC<TableRowProps> = ({
   };
 
   return (
-    <tr className="border-b dark:bg-gray-200 dark:border-gray-700">
+    <tr
+      key={productId}
+      className="border-b dark:bg-gray-200 dark:border-gray-700"
+    >
       <th
         scope="row"
         className="px-6 py-4 font-medium text-black whitespace-nowrap dark:text-black"
