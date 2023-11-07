@@ -118,7 +118,7 @@ const UpdateInventoryModal = () => {
         type="hidden"
         id="productId"
         {...register('productId')}
-        value={selectedItemData.productId} // Set the value to productId
+        value={selectedItemData.productId}
       />
     </div>
   );
