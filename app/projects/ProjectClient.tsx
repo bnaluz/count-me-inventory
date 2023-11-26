@@ -3,6 +3,7 @@ import getCurrentUser from '../actions/getCurrentUser';
 import Button from '../components/Button';
 import ClientOnly from '../components/ClientOnly';
 import useAddProjectModal from '../components/hooks/useAddProjectModal';
+import ProjectTable from '../components/project/projectTable/ProjectTable';
 
 const ProjectClient = () => {
   const addProjectModal = useAddProjectModal();
@@ -19,6 +20,9 @@ const ProjectClient = () => {
             disabled={false}
             onClick={() => addProjectModal.onOpen()}
           />
+        </div>
+        <div className="w-full mx-auto mt-10 items-center">
+          <ProjectTable />
         </div>
       </div>
     </ClientOnly>
