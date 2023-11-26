@@ -20,6 +20,7 @@ model User {
 
   updatedAt DateTime  @updatedAt
   products  Product[]
+  projects  Project[]
 }
 
 model Location {
@@ -40,7 +41,31 @@ model Product {
   location           String?
   totalQty           Int
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user     User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  projects ProductsInProject[]
+}
+
+//created project model, working on front-end page to create now project
+model Project {
+  id                 String   @id @default(uuid())
+  createdAt          DateTime @default(now())
+  userId             String
+  projectName        String
+  projectDescription String
+
+  user     User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  products ProductsInProject[]
+}
+
+//join table to now add many-to-many relationship of projects to products
+model ProductsInProject {
+  id        String @id @default(uuid())
+  projectId String
+  productId String
+  quantity  Int
+
+  project Project @relation(fields: [projectId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
 }
 
 model Vendor {

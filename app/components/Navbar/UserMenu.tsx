@@ -56,7 +56,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   onClick={() => addInventoryModal.onOpen()}
                   label="Add Inventory Item"
                 ></MenuItem>
-                <MenuItem onClick={() => {}} label="Projects"></MenuItem>
+                <MenuItem
+                  onClick={() => router.push('/projects')}
+                  label="Projects"
+                ></MenuItem>
                 <MenuItem onClick={() => {}} label="Vendors"></MenuItem>
                 <MenuItem onClick={() => {}} label="Purchase Orders"></MenuItem>
                 <MenuItem
