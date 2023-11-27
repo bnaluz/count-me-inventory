@@ -9,6 +9,7 @@ import getCurrentUser from './actions/getCurrentUser';
 import AddInventoryModal from './components/modals/AddInventoryModal';
 import UpdateInventoryModal from './components/modals/UpdateInventoryModal';
 import AddProjectModal from './components/modals/AddProjectModal';
+import UpdateProjectModal from './components/modals/UpdateProjectModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,6 +32,7 @@ export default async function RootLayout({
         <AddInventoryModal />
         <AddProjectModal />
         <UpdateInventoryModal />
+        <UpdateProjectModal />
         <RegisterModal />
         <Navbar currentUser={currentUser} />
         {children}

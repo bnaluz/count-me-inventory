@@ -2,6 +2,7 @@
 import { AiOutlineEdit } from 'react-icons/ai';
 import { CiViewList } from 'react-icons/ci';
 import { IoMdAddCircleOutline } from 'react-icons/io';
+import useUpdateProjectModal from '../../hooks/useUpdateProject';
 
 interface ProjectTableRowProps {
   projectName: string;
@@ -14,6 +15,16 @@ const ProjectTableRow: React.FC<ProjectTableRowProps> = ({
   projectId,
   projectName,
 }) => {
+  const updateProject = useUpdateProjectModal();
+
+  const handleProjectUpdateModal = () => {
+    updateProject.onOpen({
+      projectDescription,
+      projectId,
+      projectName,
+    });
+  };
+
   return (
     <tr
       key={projectId}
@@ -27,7 +38,7 @@ const ProjectTableRow: React.FC<ProjectTableRowProps> = ({
       </th>
       <td className="px-6 py-4">{projectDescription}</td>
       <td className="px-6 py-4">
-        <button>
+        <button onClick={handleProjectUpdateModal}>
           <AiOutlineEdit size={16} />
         </button>
       </td>
