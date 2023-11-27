@@ -1,5 +1,0 @@
-'use client';
-
-const ProjectTableRow = () => {};
-
-export default ProjectTableRow;

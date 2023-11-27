@@ -2,7 +2,7 @@
 
 import ProjectTableHead from './ProjectTableHead';
 
-const InventoryTable = ({ children }: any) => {
+const ProjectTable = ({ children }: any) => {
   return (
     <div className="relative max-w-[1640px] overflow-x-auto mx-auto rounded-md">
       <table className="w-full text-md text-left text-black dark:text-black ">
@@ -13,4 +13,4 @@ const InventoryTable = ({ children }: any) => {
   );
 };
 
-export default InventoryTable;
+export default ProjectTable;
