@@ -34,6 +34,7 @@ export default async function RootLayout({
         <UpdateInventoryModal />
         <UpdateProjectModal />
         <RegisterModal />
+
         <Navbar currentUser={currentUser} />
         {children}
       </body>
