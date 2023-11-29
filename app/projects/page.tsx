@@ -1,18 +1,40 @@
+import getInventory from '../actions/getInventory';
 import getProjects from '../actions/getProjects';
 import ClientOnly from '../components/ClientOnly';
 import Container from '../components/Container';
+import PaginationControls from '../components/inventory/PaginationControls';
+import ProductListRow from '../components/inventory/ProductListRow';
 import ProductList from '../components/modals/ProductList';
 import ProjectTable from '../components/project/projectTable/ProjectTable';
 import ProjectTableRow from '../components/project/projectTable/ProjectTableRow';
 import ProjectClient from './ProjectClient';
 
-const page = async () => {
+const page = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | string[] | undefined };
+}) => {
   const projects = await getProjects();
+  const inventory = await getInventory();
+
+  const page = searchParams['page'] ?? '1';
+  const per_page = searchParams['per_page'] ?? '10';
+
+  const start = (Number(page) - 1) * Number(per_page);
+  const end = start + Number(per_page);
+
+  const entries = inventory.slice(start, end);
 
   return (
     <ClientOnly>
       <ProductList>
-        {/* <div className="flex flex-col gap-4">hello</div> //TODO replace with children products list */}
+        {entries.map((el) => (
+          <ProductListRow
+            productId={el.id}
+            productName={el.productName}
+            productDescription={el.productDescription}
+          />
+        ))}
       </ProductList>
       <Container>
         <div className="pt-28">

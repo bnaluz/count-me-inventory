@@ -13,9 +13,9 @@ const ProjectTableHead = () => {
         <th scope="col" className="px-6 py-3">
           Edit
         </th>
-        <th scope="col" className="px-6 py-3">
+        {/* <th scope="col" className="px-6 py-3">
           Add Products
-        </th>
+        </th> */}
         <th scope="col" className="px-6 py-3">
           View
         </th>

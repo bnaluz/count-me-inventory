@@ -35,7 +35,7 @@ model Product {
   userId             String
   productBrand       String?
   productName        String  @unique
-  productDescription String?
+  productDescription String
   productPrice       Float   @db.DoublePrecision
   productCategory    String?
   location           String?
