@@ -46,11 +46,11 @@ const ProjectTableRow: React.FC<ProjectTableRowProps> = ({
           <AiOutlineEdit size={16} />
         </button>
       </td>
-      {/* <td className="px-6 py-4">
-        {/* <button onClick={addProductsToProject.onOpen}>
+      <td className="px-6 py-4">
+        <button onClick={addProductsToProject.onOpen}>
           <IoMdAddCircleOutline size={16} />
-        </button> 
-      </td> */}
+        </button>
+      </td>
       <td className="px-6 py-4">
         <button>
           <CiViewList size={16} />

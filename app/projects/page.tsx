@@ -2,7 +2,6 @@ import getInventory from '../actions/getInventory';
 import getProjects from '../actions/getProjects';
 import ClientOnly from '../components/ClientOnly';
 import Container from '../components/Container';
-import PaginationControls from '../components/inventory/PaginationControls';
 import ProductListRow from '../components/inventory/ProductListRow';
 import ProductList from '../components/modals/ProductList';
 import ProjectTable from '../components/project/projectTable/ProjectTable';
