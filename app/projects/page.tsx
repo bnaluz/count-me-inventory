@@ -8,27 +8,16 @@ import ProjectTable from '../components/project/projectTable/ProjectTable';
 import ProjectTableRow from '../components/project/projectTable/ProjectTableRow';
 import ProjectClient from './ProjectClient';
 
-const page = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
+const page = async () => {
   const projects = await getProjects();
   const inventory = await getInventory();
-
-  const page = searchParams['page'] ?? '1';
-  const per_page = searchParams['per_page'] ?? '10';
-
-  const start = (Number(page) - 1) * Number(per_page);
-  const end = start + Number(per_page);
-
-  const entries = inventory.slice(start, end);
 
   return (
     <ClientOnly>
       <ProductList>
-        {entries.map((el) => (
+        {inventory.map((el) => (
           <ProductListRow
+            key={el.id}
             productId={el.id}
             productName={el.productName}
             productDescription={el.productDescription}
