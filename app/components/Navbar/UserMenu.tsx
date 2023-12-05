@@ -26,7 +26,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   const signOutAndRefresh = () => {
     router.push('/');
-    signOut();
+    setTimeout(() => {
+      signOut();
+    }, 150);
   };
 
   const toggleOpen = useCallback(() => {
