@@ -29,6 +29,10 @@ const ProjectTableRow: React.FC<ProjectTableRowProps> = ({
     });
   };
 
+  const handleAddProducts = () => {
+    addProductsToProject.onOpen({ projectDescription, projectId, projectName });
+  };
+
   return (
     <tr
       key={projectId}
@@ -47,7 +51,7 @@ const ProjectTableRow: React.FC<ProjectTableRowProps> = ({
         </button>
       </td>
       <td className="px-6 py-4">
-        <button onClick={addProductsToProject.onOpen}>
+        <button onClick={handleAddProducts}>
           <IoMdAddCircleOutline size={16} />
         </button>
       </td>

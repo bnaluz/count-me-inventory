@@ -1,17 +1,18 @@
 'use client';
-
 import { useState } from 'react';
 
 interface ProductListRowProps {
   productId: string;
   productName: string;
   productDescription: string;
+  onSelect: (productInfo: { productId: string; quantity: number }) => void;
 }
 
 const ProductListRow: React.FC<ProductListRowProps> = ({
   productId,
   productName,
   productDescription,
+  onSelect,
 }) => {
   const [selectedQuantity, setSelectedQuantity] = useState<number | ''>(0);
 
@@ -19,6 +20,10 @@ const ProductListRow: React.FC<ProductListRowProps> = ({
     const value = e.target.value;
     if (/^\d+$/.test(value) || value === '') {
       setSelectedQuantity(value === '' ? '' : Number(value));
+      onSelect({
+        productId,
+        quantity: value === '' ? 0 : Number(value),
+      });
     }
   };
 

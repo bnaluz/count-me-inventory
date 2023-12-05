@@ -14,6 +14,7 @@ const page = async () => {
 
   return (
     <ClientOnly>
+      {/* the modal */}
       <ProductList>
         {inventory.map((el) => (
           <ProductListRow
@@ -30,6 +31,7 @@ const page = async () => {
             <ProjectTable>
               {projects.map((project) => (
                 <ProjectTableRow
+                  key={project.id}
                   projectName={project.projectName}
                   projectDescription={project.projectDescription}
                   projectId={project.id}
