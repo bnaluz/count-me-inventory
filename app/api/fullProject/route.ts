@@ -18,6 +18,7 @@ export async function POST(request: Request) {
 
   const productsInProjectData = Object.entries(selectedProducts).map(
     ([productId, quantity]) => ({
+      userId: currentUser.id,
       projectId,
       productId,
       quantity,

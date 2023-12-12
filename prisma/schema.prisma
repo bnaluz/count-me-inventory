@@ -18,9 +18,10 @@ model User {
   name           String?
   hashedPassword String?
 
-  updatedAt DateTime  @updatedAt
-  products  Product[]
-  projects  Project[]
+  updatedAt   DateTime            @updatedAt
+  products    Product[]
+  projects    Project[]
+  fullProject ProductsInProject[]
 }
 
 model Location {
@@ -60,12 +61,14 @@ model Project {
 //join table to now add many-to-many relationship of projects to products
 model ProductsInProject {
   id        String @id @default(uuid())
+  userId    String
   projectId String
   productId String
   quantity  Int
 
   project Project @relation(fields: [projectId], references: [id])
   product Product @relation(fields: [productId], references: [id])
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model Vendor {
