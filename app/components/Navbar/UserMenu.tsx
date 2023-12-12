@@ -24,11 +24,26 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
-  const signOutAndRefresh = () => {
+  const signOutAndRefreshHandler = () => {
     router.push('/');
     setTimeout(() => {
       signOut();
-    }, 150);
+    }, 100);
+  };
+
+  const routerProjectsHandler = () => {
+    router.push('/projects');
+
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 100);
+  };
+
+  const addInventoryHandler = () => {
+    addInventoryModal.onOpen();
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 100);
   };
 
   const toggleOpen = useCallback(() => {
@@ -55,17 +70,17 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                   label={`Hello ${currentUser.name}`}
                 ></MenuItem>
                 <MenuItem
-                  onClick={() => addInventoryModal.onOpen()}
+                  onClick={() => addInventoryHandler()}
                   label="Add Inventory Item"
                 ></MenuItem>
                 <MenuItem
-                  onClick={() => router.push('/projects')}
+                  onClick={() => routerProjectsHandler()}
                   label="Projects"
                 ></MenuItem>
                 <MenuItem onClick={() => {}} label="Vendors"></MenuItem>
                 <MenuItem onClick={() => {}} label="Purchase Orders"></MenuItem>
                 <MenuItem
-                  onClick={() => signOutAndRefresh()}
+                  onClick={() => signOutAndRefreshHandler()}
                   label="Logout"
                 ></MenuItem>
               </>
