@@ -1,6 +1,7 @@
 'use client';
 import { useCallback, useEffect, useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
+import Button from '../Button';
 
 interface MainModalProps {
   isOpen?: boolean;
@@ -95,9 +96,11 @@ const MainModal: React.FC<MainModalProps> = ({
                       Secondary Action
                     </button>
                   )}
-                  <button disabled={disabled} onClick={handleSubmit}>
-                    {actionLabel}
-                  </button>
+                  <Button
+                    label={actionLabel}
+                    onClick={handleSubmit}
+                    disabled={disabled}
+                  />
                 </div>
                 {footer}
               </div>

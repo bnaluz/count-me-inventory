@@ -11,11 +11,16 @@ const getItem = cache(async (projectId: any) => {
 
   const fullProjectData = await getFullProject(projectId.params.projectId);
 
+  const projectName =
+    fullProjectData.length > 0
+      ? fullProjectData[0].project.projectName
+      : 'Unknown Project';
+
   console.log('start here', fullProjectData);
 
   return (
     <ClientOnly>
-      <FullProjectClient prop={fullProjectData} />
+      <FullProjectClient prop={fullProjectData} projectName={projectName} />
     </ClientOnly>
   );
 });

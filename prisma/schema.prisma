@@ -10,6 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Organization {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  adminUserId String @unique
+  adminUser   User   @relation(name: "AdminOfOrganization", fields: [adminUserId], references: [id])
+
+  users             User[]              @relation(name: "UsersOfOrganization")
+  projects          Project[]           @relation(name: "ProjectsOfOrganization")
+  products          Product[]           @relation(name: "ProductsOfOrganization")
+  vendors           Vendor[]            @relation(name: "VendorsOfOrganization")
+  purchaseOrders    PurchaseOrders[]    @relation(name: "PurchaseOrdersOfOrganization")
+  productsInProject ProductsInProject[] @relation(name: "ProductsInProjectOfOrganization")
+}
+
+enum Role {
+  ADMIN
+  USER
+  ORG_ADMIN
+}
+
 model User {
   id             String    @id @default(uuid())
   createdAt      DateTime  @default(now())
@@ -17,18 +40,18 @@ model User {
   emailVerified  DateTime?
   name           String?
   hashedPassword String?
+  updatedAt      DateTime  @updatedAt
+  role           Role      @default(USER)
 
-  updatedAt   DateTime            @updatedAt
-  products    Product[]
-  projects    Project[]
-  fullProject ProductsInProject[]
-}
+  organizationId String?
+  organization   Organization? @relation(name: "UsersOfOrganization", fields: [organizationId], references: [id])
 
-model Location {
-  id              String  @id @default(uuid())
-  locationName    String?
-  locationAddress String?
-  userId          Int?
+  // Fields related to the User model's relations
+  productsInProject   ProductsInProject[]
+  managedOrganization Organization?       @relation(name: "AdminOfOrganization")
+
+  Product Product[]
+  Project Project[]
 }
 
 model Product {
@@ -42,11 +65,13 @@ model Product {
   location           String?
   totalQty           Int
 
-  user     User                @relation(fields: [userId], references: [id], onDelete: Cascade)
-  projects ProductsInProject[]
+  organizationId          String?
+  organization            Organization?             @relation(name: "ProductsOfOrganization", fields: [organizationId], references: [id])
+  user                    User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productsInProject       ProductsInProject[]       @relation(name: "ProductProjects")
+  productsInPurchaseOrder ProductsInPurchaseOrder[]
 }
 
-//created project model, working on front-end page to create now project
 model Project {
   id                 String   @id @default(uuid())
   createdAt          DateTime @default(now())
@@ -54,11 +79,12 @@ model Project {
   projectName        String
   projectDescription String
 
-  user     User                @relation(fields: [userId], references: [id], onDelete: Cascade)
-  products ProductsInProject[]
+  organizationId    String?
+  organization      Organization?       @relation(name: "ProjectsOfOrganization", fields: [organizationId], references: [id])
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productsInProject ProductsInProject[] @relation(name: "ProjectProducts")
 }
 
-//join table to now add many-to-many relationship of projects to products
 model ProductsInProject {
   id        String @id @default(uuid())
   userId    String
@@ -66,13 +92,53 @@ model ProductsInProject {
   productId String
   quantity  Int
 
-  project Project @relation(fields: [projectId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
-  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project        Project       @relation(name: "ProjectProducts", fields: [projectId], references: [id])
+  product        Product       @relation(name: "ProductProjects", fields: [productId], references: [id])
+  user           User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  organizationId String?
+  organization   Organization? @relation(name: "ProductsInProjectOfOrganization", fields: [organizationId], references: [id])
+
+  @@unique([projectId, productId])
+}
+
+model ProductsInPurchaseOrder {
+  id              String  @id @default(uuid())
+  purchaseOrderId String
+  productId       String
+  quantity        Int
+  received        Boolean @default(false)
+
+  purchaseOrder PurchaseOrders @relation(fields: [purchaseOrderId], references: [id])
+  product       Product        @relation(fields: [productId], references: [id])
+
+  @@unique([purchaseOrderId, productId])
+}
+
+enum OrderStatus {
+  PENDING
+  APPROVED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+model PurchaseOrders {
+  id          String      @id @default(uuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  totalCost   Float       @db.DoublePrecision
+  orderStatus OrderStatus
+
+  organizationId  String
+  organization    Organization              @relation(name: "PurchaseOrdersOfOrganization", fields: [organizationId], references: [id])
+  productsInOrder ProductsInPurchaseOrder[]
 }
 
 model Vendor {
   id            String  @id @default(uuid())
   vendorName    String
   vendorAddress String?
+
+  organizationId String?
+  organization   Organization? @relation(name: "VendorsOfOrganization", fields: [organizationId], references: [id])
 }

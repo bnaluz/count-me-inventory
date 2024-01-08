@@ -13,6 +13,7 @@ export default async function getFullProject(projectId: string) {
       },
       include: {
         product: true,
+        project: true,
       },
     });
 

@@ -1,18 +1,19 @@
 'use client';
-//packages
+
 import axios from 'axios';
 import { useCallback, useState } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-//components
-import useRegisterModal from '../hooks/useRegisterModal';
+
+import useOrgRegisterModal from '../hooks/useOrgRegisterModal';
 import useLoginModal from '../hooks/useLoginModal';
 import MainModal from './MainModal';
 import Input from '../inputs/Input';
 import Heading from '../Heading';
 
-const RegisterModal = () => {
-  const registerModal = useRegisterModal();
+const OrgRegisterModal = () => {
+  const orgRegisterModal = useOrgRegisterModal();
+
   const loginModal = useLoginModal();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -22,20 +23,26 @@ const RegisterModal = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
-    defaultValues: { name: '', email: '', password: '' },
+    defaultValues: {
+      organizationName: '',
+      adminUserName: '',
+      adminEmail: '',
+      password: '',
+    },
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
+    console.log(data);
     axios
-      .post('/api/register', data)
+      .post('/api/orgRegister', data)
       .then(() => {
-        toast.success('Successful Account Creation');
-        registerModal.onClose();
+        toast.success('Successful registration.');
+        orgRegisterModal.onClose();
         loginModal.onOpen();
       })
       .catch((error) => {
-        toast.error('Unsuccessful attempt, something went wrong');
+        toast.error('Unsuccessful registration. Something went wrong');
       })
       .finally(() => {
         setIsLoading(false);
@@ -44,26 +51,34 @@ const RegisterModal = () => {
 
   const toggle = useCallback(() => {
     loginModal.onOpen();
-    registerModal.onClose();
-  }, [loginModal, registerModal]);
+    orgRegisterModal.onClose();
+  }, [loginModal, orgRegisterModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
       <Heading
         title="Welcome to CountMeInventory"
-        subtitle="Create an account!"
+        subtitle="Create your organization account"
       />
       <Input
-        id="email"
-        label="Email"
+        id="organizationName"
+        label="Organization Name"
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
       <Input
-        id="name"
-        label="Name"
+        id="adminUserName"
+        label="Admin User Name"
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id="adminEmail"
+        label="Admin Email"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -86,8 +101,8 @@ const RegisterModal = () => {
         <div className="justify-center flex flex-row items-center gap-2">
           <div>Already have an account?</div>
           <div
-            onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
+            onClick={toggle}
           >
             Log in
           </div>
@@ -99,10 +114,10 @@ const RegisterModal = () => {
   return (
     <MainModal
       disabled={isLoading}
-      isOpen={registerModal.isOpen}
-      title="Register"
+      isOpen={orgRegisterModal.isOpen}
+      title="Register Organization"
       actionLabel="Continue"
-      onClose={registerModal.onClose}
+      onClose={orgRegisterModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
@@ -110,4 +125,4 @@ const RegisterModal = () => {
   );
 };
 
-export default RegisterModal;
+export default OrgRegisterModal;

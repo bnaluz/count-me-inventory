@@ -11,6 +11,7 @@ import UpdateInventoryModal from './components/modals/UpdateInventoryModal';
 import AddProjectModal from './components/modals/AddProjectModal';
 import UpdateProjectModal from './components/modals/UpdateProjectModal';
 import ProductList from './components/modals/ProductList';
+import OrgRegisterModal from './components/modals/OrgRegisterModal';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,6 +36,7 @@ export default async function RootLayout({
         <UpdateInventoryModal />
         <UpdateProjectModal />
         <RegisterModal />
+        <OrgRegisterModal />
         <Navbar currentUser={currentUser} />
         {children}
       </body>

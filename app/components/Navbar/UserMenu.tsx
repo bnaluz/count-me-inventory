@@ -8,6 +8,7 @@ import { AiOutlineMenu } from 'react-icons/ai';
 //components
 import useAddInventoryModal from '../hooks/useAddInventoryModal';
 import useLoginModal from '../hooks/useLoginModal';
+import useOrgRegisterModal from '../hooks/useOrgRegisterModal';
 import useRegisterModal from '../hooks/useRegisterModal';
 import MenuItem from './MenuItem';
 
@@ -23,6 +24,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const addInventoryModal = useAddInventoryModal();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
+  const orgRegisterModal = useOrgRegisterModal();
 
   const signOutAndRefreshHandler = () => {
     router.push('/');
@@ -87,7 +89,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             ) : (
               <>
                 <MenuItem onClick={loginModal.onOpen} label="Login" />
-                <MenuItem onClick={registerModal.onOpen} label="Sign Up" />
+                <MenuItem
+                  onClick={registerModal.onOpen}
+                  label="Sign Up as User"
+                />
+                <MenuItem
+                  onClick={orgRegisterModal.onOpen}
+                  label="Sign Up as Org Admin"
+                />
               </>
             )}
           </div>
